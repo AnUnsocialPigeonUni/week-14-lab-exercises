@@ -9,5 +9,6 @@ jobs:
         uses: actions/checkout@v3
       - run: ls -a
       - run: cd insecure
+      - run: npm i --package-lock-only
       - run: npm audit
       - run: echo "Audited"
