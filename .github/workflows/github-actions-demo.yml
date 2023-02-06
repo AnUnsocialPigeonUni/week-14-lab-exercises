@@ -5,5 +5,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: npm audit fix
-      - run: echo "ran npm audit fix :)"
+      - run: ls
+      - run: cd insecure
+      - run: npm audit
+      - run: echo "Audited"      
