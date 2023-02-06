@@ -12,5 +12,6 @@ jobs:
   Do-Some-Linting:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Doing some linting?
-        run: (cd ../mashup && npm init @eslint/config)
+        run: (cd mashup && npm init @eslint/config)
