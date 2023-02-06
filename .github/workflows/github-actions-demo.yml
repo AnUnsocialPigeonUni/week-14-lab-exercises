@@ -14,5 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Doing some linting?
-        run: (cd mashup && npm install)
+        run: (cd mashup && npm install && npm run lint)
 
