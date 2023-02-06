@@ -11,7 +11,7 @@ jobs:
         run: echo "Audited"
     
   Do-Some-Linting:
-    runs-on: ubuntu-latest:
+    runs-on: ubuntu-latest
     steps:
       - name: Doing some linting?
         run: npm init @eslint/config 
