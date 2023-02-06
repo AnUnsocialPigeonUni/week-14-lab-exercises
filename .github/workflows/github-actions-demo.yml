@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Doing some linting?
-        run: npm init @eslint/config 
+        run: (cd mashup && npm init @eslint/config)
