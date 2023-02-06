@@ -13,19 +13,19 @@ CI and CD
 see [Github Actions, Getting started](https://docs.github.com/en/actions/quickstart)
 ## Your mission
 
-1. [ ] Get CI to test for insecure modules
-    1. [ ] Fix issues
-    1. [ ] recommit
-1. [ ] Get CI to detect messed up JS
-    1. [ ] Fix issues
-    1. [ ] recommit
-    1. [ ] Mash it up again
-    1. [ ] recommit
-1. [ ] Get CI to run unit testing
-    1. [ ] Fix issues
-    1. [ ] recommit
-    1. [ ] Add a new test case for Bulgarian
-    1. [ ] recommit
+1. [x] Get CI to test for insecure modules
+    1. [x] Fix issues
+    1. [x] recommit
+1. [x] Get CI to detect messed up JS
+    1. [x] Fix issues
+    1. [x] recommit
+    1. [x] Mash it up again
+    1. [x] recommit
+1. [x] Get CI to run unit testing
+    1. [x] Fix issues
+    1. [x] recommit
+    1. [x] Add a new test case for Bulgarian
+    1. [x] recommit
 1. Create a new project called `combined/` which outputs a
 hello greeting depending on the language you pass in the url
     1. [ ] It must lint
