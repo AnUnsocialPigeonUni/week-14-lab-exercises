@@ -16,3 +16,10 @@ jobs:
       - name: Doing some linting?
         run: (cd mashup && npm install && npm run lint)
 
+  Do-Some-Testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Doing some testing?
+        run: (cd unittesting && npm install && npm test returnHello.test.js)
+
