@@ -1,17 +1,21 @@
 module.exports = {
-  extends: "eslint:recommended",
-  env: {
-    browser: false,
-    es2021: true,
-    node: true,
-    commonjs: true
+  'env': {
+    'browser': true,
+    'es2021': true,
   },
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module"
+  'extends': [
+    'plugin:react/recommended',
+    'google',
+  ],
+  'overrides': [
+  ],
+  'parserOptions': {
+    'ecmaVersion': 'latest',
+    'sourceType': 'module',
   },
-  rules: {
-    quotes: [2, "double", { avoidEscape: true }],
-    semi: ["error", "always"]
-  }
+  'plugins': [
+    'react',
+  ],
+  'rules': {
+  },
 };
