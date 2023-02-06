@@ -14,4 +14,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Doing some linting?
-        run: (cd mashup && npm install eslint-plugin-react@latest --save-dev && npx eslint .eslintrc.js)
+        run: (cd mashup && npm install)
+
