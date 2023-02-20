@@ -1,0 +1,7 @@
+{
+    "Parameters": {
+      "VpcCidr": "10.0.0.0/24",
+      "PubSubnetACidr": "10.0.0.0/26",
+      "StudentName": "JAKE"
+    }
+}

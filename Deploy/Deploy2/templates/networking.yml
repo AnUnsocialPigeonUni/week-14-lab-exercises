@@ -1,0 +1,55 @@
+Description: Networking architecture
+
+Parameters:
+  VpcCidr:
+    Description: CIDR block for the VPC
+    Type: String
+  PubSubnetACidr:
+    Type: String
+  StudentName:
+    Type: String
+
+Resources:
+  # VPC
+  MyTestVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCidr
+      Tags: 
+        - Key: Name
+          Value: !Sub "${StudentName}-vpc"
+        - Key: JakeTearDown
+          Value: True
+
+  # PubSubnetA
+  PubSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyTestVPC
+      CidrBlock: !Ref PubSubnetACidr
+      AvailabilityZone: "eu-west-2a"
+      Tags:
+        - Key: Name
+          Value: !Sub "${StudentName}-pub-subnet-a"
+        - Key: JakeTearDown
+          Value: True
+
+  # Route Table Internet Gateway
+  PubRouteA:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub "${StudentName}-pub-route-a"
+        - Key: JakeTearDown
+          Value: True
+      VpcId: !Ref MyTestVPC
+
+  PubSubnetRouteTableAssociationA:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PubRouteA
+      SubnetId: !Ref PubSubnetA
+      Tags:
+        - Key: JakeTearDown
+          Value: True

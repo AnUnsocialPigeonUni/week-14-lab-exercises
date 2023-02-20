@@ -1,0 +1,25 @@
+Description: Deploys S3 bucket to store poems
+
+Parameters:
+  PoemsBucketName:
+    Type: String
+  StudentName:
+    Type: String
+  
+Resources:
+  PoemsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref PoemsBucketName
+        PublicAccessBlockConfiguration:
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+
+Outputs:
+  BucketArn:
+    Description: Arn of the Poem bucket
+    Value: !GetAtt PoemsBucket.Arn
+    Export: 
+      Name: !Sub "${StudentName}-poem-bucket-arn"
