@@ -18,8 +18,6 @@ Resources:
       Tags: 
         - Key: Name
           Value: !Sub "${StudentName}-vpc"
-        - Key: JakeTearDown
-          Value: True
 
   # PubSubnetA
   PubSubnetA:
@@ -31,8 +29,6 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${StudentName}-pub-subnet-a"
-        - Key: JakeTearDown
-          Value: True
 
   # Route Table Internet Gateway
   PubRouteA:
@@ -41,8 +37,6 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${StudentName}-pub-route-a"
-        - Key: JakeTearDown
-          Value: True
       VpcId: !Ref MyTestVPC
 
   PubSubnetRouteTableAssociationA:
@@ -50,6 +44,3 @@ Resources:
     Properties:
       RouteTableId: !Ref PubRouteA
       SubnetId: !Ref PubSubnetA
-      Tags:
-        - Key: JakeTearDown
-          Value: True
