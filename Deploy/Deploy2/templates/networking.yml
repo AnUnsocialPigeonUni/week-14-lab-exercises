@@ -4,6 +4,8 @@ Parameters:
   VpcCidr:
     Description: CIDR block for the VPC
     Type: String
+  UserDataScript:
+    Type: String
   PubSubnetACidr:
     Type: String
   StudentName:
@@ -11,7 +13,7 @@ Parameters:
 
 Resources:
   # VPC
-  MyTestVPC:
+  JakeVPC:
     Type: AWS::EC2::VPC
     Properties:
       CidrBlock: !Ref VpcCidr
@@ -25,7 +27,7 @@ Resources:
   PubSubnetA:
     Type: AWS::EC2::Subnet
     Properties:
-      VpcId: !Ref MyTestVPC
+      VpcId: !Ref JakeVPC
       CidrBlock: !Ref PubSubnetACidr
       AvailabilityZone: "eu-west-2a"
       Tags:
@@ -33,6 +35,22 @@ Resources:
           Value: !Sub "${StudentName}-pub-subnet-a"
         - Key: JakeTearDown
           Value: True
+
+  # IGW
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    
+  # Attatch IGW to VPC
+  AttachInternetGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref JakeVPC
+      InternetGatewayId: !Ref InternetGateway
+
+  PublicRouteTable: 
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref JakeVPC
 
   # Route Table Internet Gateway
   PubRouteA:
@@ -43,7 +61,7 @@ Resources:
           Value: !Sub "${StudentName}-pub-route-a"
         - Key: JakeTearDown
           Value: True
-      VpcId: !Ref MyTestVPC
+      VpcId: !Ref JakeVPC
 
   PubSubnetRouteTableAssociationA:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -53,3 +71,39 @@ Resources:
       Tags:
         - Key: JakeTearDown
           Value: True
+
+
+  # EC2 Stuff
+  
+  # Security Group
+  EC2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: "${StudentName}-Security-Group"
+      SecurityGroupIngress: !
+        - Description: Ingress Port 80
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - Description: Ingress Port 8080
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+        - Description: Ingress Port 3000
+          FromPort: 3000
+          ToPort: 3000
+          CidrIp: 0.0.0.0/0
+
+      VpcId: !Ref JakeVPC
+
+  # EC2 Instance itself
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: "eu-west-2a"
+      UserData: 
+        Fn::Base64: !Ref UserDataScript
+      InstanceType: "t2.micro"
+      ImageId: "ami-09ee0944866c73f62"
+      KeyName: "Jake"
+      
