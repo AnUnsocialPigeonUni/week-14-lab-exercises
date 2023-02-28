@@ -4,7 +4,7 @@
 
 if [[ -z "${STUDENT_NAME}" ]]; then
   echo "STUDENT_NAME is not set"
-  echo "Please run the command \"execute STUDENT_NAME={desired name}\""
+  echo "Please run the command \"export STUDENT_NAME={desired name}\""
   exit 1
 fi
 if [! aws sts get-caller-identity]; then

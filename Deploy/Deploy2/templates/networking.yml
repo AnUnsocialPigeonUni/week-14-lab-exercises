@@ -20,8 +20,6 @@ Resources:
       Tags: 
         - Key: Name
           Value: !Sub "${StudentName}-vpc"
-        - Key: JakeTearDown
-          Value: True
 
   # PubSubnetA
   PubSubnetA:
@@ -33,8 +31,6 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${StudentName}-pub-subnet-a"
-        - Key: JakeTearDown
-          Value: True
 
   # IGW
   InternetGateway:
@@ -59,8 +55,6 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub "${StudentName}-pub-route-a"
-        - Key: JakeTearDown
-          Value: True
       VpcId: !Ref JakeVPC
 
   PubSubnetRouteTableAssociationA:
@@ -106,4 +100,3 @@ Resources:
       InstanceType: "t2.micro"
       ImageId: "ami-09ee0944866c73f62"
       KeyName: "Jake"
-      
