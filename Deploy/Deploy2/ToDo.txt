@@ -1,0 +1,1 @@
+For EC2SecurityGroup: Property IpProtocol cannot be empty
