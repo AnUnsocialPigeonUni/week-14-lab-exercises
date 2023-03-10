@@ -73,17 +73,20 @@ Resources:
   EC2SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: "${StudentName}-Security-Group"
+      GroupDescription: "${STUDENT_NAME}-Security-Group"
       SecurityGroupIngress: !
         - Description: Ingress Port 80
+          IpProtocol: tcp
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
         - Description: Ingress Port 8080
+          IpProtocol: tcp
           FromPort: 8080
           ToPort: 8080
           CidrIp: 0.0.0.0/0
         - Description: Ingress Port 3000
+          IpProtocol: tcp
           FromPort: 3000
           ToPort: 3000
           CidrIp: 0.0.0.0/0
@@ -95,8 +98,12 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       AvailabilityZone: "eu-west-2a"
+      SecurityGroupIds: [ !Ref EC2SecurityGroup]
       UserData: 
         Fn::Base64: !Ref UserDataScript
       InstanceType: "t2.micro"
       ImageId: "ami-09ee0944866c73f62"
       KeyName: "Jake"
+      SecurityGroups:
+        - !Ref EC2SecurityGroup
+      

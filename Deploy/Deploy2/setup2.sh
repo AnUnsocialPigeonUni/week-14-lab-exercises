@@ -33,7 +33,6 @@ aws cloudformation deploy \
      VpcCidr="10.0.0.0/24" \
       PubSubnetACidr="10.0.0.0/26" \
       UserDataScript="${UserDataScript}" \
-      StudentName="JAKE" \
-  --debug &&
+      StudentName="JAKE" &&
       echo "Complete!" &&
       exit 1
