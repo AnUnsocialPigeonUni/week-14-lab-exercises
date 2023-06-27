@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "security": "snyk test"
+    "security": "snyk test",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "engines": {
     "node": ">=16"
@@ -14,6 +16,8 @@
   "author": "Jujhar@jujhar.com",
   "license": "MIT",
   "dependencies": {
-    "express": "4.1.2"
-  }
+    "express": "4.17.3",
+    "@snyk/protect": "latest"
+  },
+  "snyk": true
 }
